@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kevin Wilkins, Agentic Engineer</title>
+<meta name="description" content="Kevin Wilkins: agentic engineer who builds and tests systems of AI coding agents. Resume and portfolio, with the evidence behind every claim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a ship's chart table. A hex "comb" where agents leave trails heads the page; below it, numbered
+   chart sections read top to bottom, each figure tagged with how it is known, like the colony's own ledger. */
+:root{
+  --bg:#EDF0F2;          /* chart-table vellum, cool */
+  --surface:#FFFFFF;
+  --sunk:#E2E7EB;
+  --ink:#10202C;         /* navy ink */
+  --muted:#4E606D;
+  --rule:#C5CFD6;
+  --wax:#B86E00;         /* honey / beeswax accent */
+  --wax-strong:#8F5400;
+  --wax-soft:#F6E3C2;
+  --steel:#2F5470;       /* hull steel, second voice */
+  --pass:#1E6B45;
+  --pass-soft:#D6EDDF;
+  --warn:#9A3B12;
+  --warn-soft:#F7DDD0;
+  --deep:#10202C; --deep-fg:#E4EAEE; --deep-dim:#8FA2B0; --deep-rule:#2A3D4B;
+  --deep-wax:#F0A63A; --deep-pass:#6FD39C; --deep-warn:#F39A73; --deep-steel:#8DB6D6;
+  --display:'Big Shoulders Display','Arial Narrow','Roboto Condensed',Impact,sans-serif;
+  --body:'Public Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'Cascadia Mono',Consolas,monospace;
+  --step--1:clamp(.78rem,.76rem + .1vw,.84rem);
+  --step-0:clamp(.98rem,.95rem + .15vw,1.06rem);
+  --step-1:clamp(1.2rem,1.1rem + .4vw,1.42rem);
+  --step-2:clamp(1.6rem,1.35rem + 1.1vw,2.2rem);
+  --step-3:clamp(2.2rem,1.7rem + 2.4vw,3.6rem);
+  --step-4:clamp(3.2rem,2.2rem + 5.2vw,7rem);
+  --radius:6px;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B141B; --surface:#111D27; --sunk:#16242F; --ink:#E4EAEE; --muted:#9AAAB6; --rule:#263845;
+    --wax:#F0A63A; --wax-strong:#FFC46B; --wax-soft:#3A2A12; --steel:#7FA8C9;
+    --pass:#6FD39C; --pass-soft:#143524; --warn:#F39A73; --warn-soft:#3B1E12;
+    --deep:#050B10; --deep-rule:#1F2F3B;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B141B; --surface:#111D27; --sunk:#16242F; --ink:#E4EAEE; --muted:#9AAAB6; --rule:#263845;
+  --wax:#F0A63A; --wax-strong:#FFC46B; --wax-soft:#3A2A12; --steel:#7FA8C9;
+  --pass:#6FD39C; --pass-soft:#143524; --warn:#F39A73; --warn-soft:#3B1E12;
+  --deep:#050B10; --deep-rule:#1F2F3B;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--steel);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--wax-strong)}
+:focus-visible{outline:2px solid var(--wax);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:.005em}
+p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+.label{font-family:var(--mono);font-size:var(--step--1);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;gap:20px;min-height:56px}
+.nav .mark{font-family:var(--display);font-weight:900;font-size:1.35rem;letter-spacing:.02em;text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav .mark span{color:var(--wax)}
+.nav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav li a{display:block;padding:6px 10px;border-radius:4px;font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;text-decoration:none;color:var(--muted);white-space:nowrap}
+.nav li a:hover,.nav li a.on{color:var(--ink);background:var(--sunk)}
+.theme-btn{flex:none;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:4px;font:500 .74rem var(--mono);padding:6px 9px;cursor:pointer}
+@media (max-width:760px){.nav ul{display:none}.theme-btn{margin-left:auto}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+#comb{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 82%,transparent) 48%,color-mix(in srgb,var(--bg) 20%,transparent) 100%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;padding-block:clamp(48px,8vw,104px) clamp(40px,6vw,72px)}
+.hero .eyebrow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:3px;border:1px solid var(--rule);background:var(--surface);color:var(--muted)}
+.chip.clear{border-color:var(--pass);color:var(--pass);background:var(--pass-soft)}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.hero h1{font-size:var(--step-4);font-weight:900;text-transform:uppercase;letter-spacing:-.005em;line-height:.88}
+.hero h1 .role{display:block;font-size:.36em;font-weight:700;letter-spacing:.04em;color:var(--wax);margin-top:.35em;line-height:1.05}
+.hero .thesis{max-width:40ch;font-size:var(--step-1);line-height:1.45;margin-top:26px;color:var(--ink)}
+.hero .thesis strong{font-weight:700;background:linear-gradient(transparent 62%,var(--wax-soft) 62%)}
+.contact{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-family:var(--mono);font-size:.86rem}
+.contact span,.contact a{color:var(--ink);text-decoration:none;user-select:all}
+.contact a:hover{color:var(--wax-strong)}
+.contact .k{color:var(--muted);user-select:none;margin-right:6px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--body);padding:11px 16px;border-radius:4px;text-decoration:none;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--bg)}
+.btn:hover{background:var(--wax-strong);border-color:var(--wax-strong);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--surface);color:var(--ink);border-color:var(--wax)}
+
+/* figures strip */
+.figs{position:relative;z-index:1;border-top:1px solid var(--rule);background:color-mix(in srgb,var(--surface) 90%,transparent)}
+.figs .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding-block:0}
+.fig{padding:20px 16px 18px;border-left:1px solid var(--rule);min-width:0}
+.fig:first-child{border-left:0;padding-left:0}
+.fig b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(2rem,1.5rem + 1.6vw,2.9rem);line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.fig span:not(.tag){display:block;font-size:.84rem;line-height:1.35;color:var(--muted);margin-top:6px}
+.fig .tag{margin-top:9px}
+@media (max-width:980px){.figs .wrap{grid-template-columns:repeat(3,minmax(0,1fr))}.fig:nth-child(4){border-left:0;padding-left:0}.fig:nth-child(n+4){border-top:1px solid var(--rule)}}
+@media (max-width:560px){.figs .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.fig{border-left:0;padding-left:0;border-top:1px solid var(--rule)}.fig:nth-child(odd){padding-right:12px}.fig:nth-child(even){border-left:1px solid var(--rule);padding-left:14px}.fig:nth-child(-n+2){border-top:0}}
+
+/* claim tags */
+.tag{display:inline-block;font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 6px;border-radius:2px;vertical-align:.1em;white-space:nowrap}
+.tag.m{color:var(--pass);background:var(--pass-soft)}
+.tag.r{color:var(--steel);background:color-mix(in srgb,var(--steel) 14%,transparent)}
+.tag.s{color:var(--wax-strong);background:var(--wax-soft)}
+.tag.u{color:var(--warn);background:var(--warn-soft)}
+
+/* ---------- sections ---------- */
+section.block{padding-block:clamp(56px,8vw,104px);border-bottom:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:16px 40px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head .label b{display:block;font-family:var(--display);font-size:3.4rem;font-weight:900;color:var(--wax);line-height:.9;letter-spacing:0;margin-bottom:6px}
+.sec-head h2{font-size:var(--step-3);text-transform:uppercase;font-weight:900}
+.sec-head p.lede{grid-column:2;max-width:64ch;color:var(--muted);font-size:var(--step-1);line-height:1.5}
+@media (max-width:760px){.sec-head{grid-template-columns:minmax(0,1fr)}.sec-head p.lede{grid-column:1}}
+.prose{max-width:66ch}
+.prose p+p{margin-top:1em}
+h3{font-size:var(--step-2);text-transform:uppercase}
+
+/* ---------- summary ---------- */
+.split{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,64px)}
+@media (max-width:860px){.split{grid-template-columns:minmax(0,1fr)}}
+.targets{display:grid;gap:0;border-top:2px solid var(--ink)}
+.targets div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.targets b{font-weight:600}
+.targets span{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-align:right}
+.bridge{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.bridge div{background:var(--surface);padding:16px}
+.bridge .label{display:block;margin-bottom:6px}
+.bridge p{font-size:.9rem;line-height:1.45}
+@media (max-width:560px){.bridge{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- apiary ---------- */
+.flag{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+@media (max-width:900px){.flag{grid-template-columns:minmax(0,1fr)}}
+.ledger{background:var(--deep);color:var(--deep-fg);border:1px solid var(--deep-rule);border-radius:var(--radius);padding:18px 18px 14px;font-family:var(--mono);font-size:.76rem;line-height:1.75;overflow-x:auto}
+.ledger .hd{display:flex;justify-content:space-between;gap:12px;color:var(--deep-dim);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--deep-rule);padding-bottom:8px;margin-bottom:8px}
+.ledger code{display:block;white-space:pre-wrap;overflow-wrap:anywhere;padding-left:2ch;text-indent:-2ch;font:inherit}
+.ledger .t{color:var(--deep-dim)}
+.ledger .c{color:var(--deep-wax)}
+.ledger .sg-warn{color:var(--deep-warn)}
+.ledger .sg-trace{color:var(--deep-steel)}
+.ledger-note{font-size:.82rem;color:var(--muted);margin-top:10px}
+
+/* tiers */
+.tiers{margin-top:clamp(36px,5vw,56px);display:grid;gap:10px}
+.tier{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);border:1px solid var(--rule);background:var(--surface);border-radius:var(--radius);overflow:hidden}
+.tier>.who{padding:16px;background:var(--sunk);border-right:1px solid var(--rule)}
+.tier>.who b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:900;text-transform:uppercase;line-height:1}
+.tier>.who span{display:block;font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:6px}
+.tier>.what{padding:14px 16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.node{font-family:var(--mono);font-size:.76rem;padding:6px 9px;border:1px solid var(--rule);border-radius:3px;background:var(--bg)}
+.node.hot{border-color:var(--wax);background:var(--wax-soft);color:var(--ink)}
+.tier-arrow{display:flex;gap:24px;padding-left:206px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.tier-arrow span::before{content:"↓ ";color:var(--wax)}
+.tier-arrow span.up::before{content:"↑ "}
+@media (max-width:700px){.tier{grid-template-columns:minmax(0,1fr)}.tier>.who{border-right:0;border-bottom:1px solid var(--rule)}.tier-arrow{padding-left:0;flex-wrap:wrap;gap:6px 18px}}
+
+/* lifecycle */
+.cycle{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));counter-reset:step;border-top:2px solid var(--ink)}
+.cycle li{list-style:none;padding:16px 14px 0 0;position:relative;min-width:0}
+.cycle li::before{counter-increment:step;content:counter(step);font-family:var(--display);font-weight:900;font-size:2.4rem;color:var(--wax);line-height:1;display:block}
+.cycle b{display:block;font-family:var(--mono);font-size:.84rem;margin:6px 0 4px}
+.cycle p{font-size:.88rem;line-height:1.45;color:var(--muted)}
+.cycle{padding:0;margin-left:0}
+@media (max-width:860px){.cycle{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}}
+@media (max-width:480px){.cycle{grid-template-columns:minmax(0,1fr)}}
+
+/* phases */
+.phases{margin-top:clamp(40px,6vw,64px)}
+.phase-list{margin:16px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.phase-list li{display:grid;grid-template-columns:52px 96px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)}
+.phase-list .n{font-family:var(--display);font-weight:900;font-size:1.5rem;color:var(--muted)}
+.phase-list .d{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.phase-list .w{min-width:0}
+.phase-list .w b{font-weight:600}
+.phase-list .w small{display:block;color:var(--muted);font-size:.86rem;line-height:1.4;margin-top:2px}
+.pill{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.pill.pass{color:var(--pass);background:var(--pass-soft)}
+.pill.open{color:var(--wax-strong);background:var(--wax-soft)}
+.pill.pre{color:var(--steel);border:1px solid var(--steel)}
+@media (max-width:640px){.phase-list li{grid-template-columns:40px minmax(0,1fr) auto}.phase-list .d{display:none}}
+
+/* ---------- evidence ---------- */
+.chart-card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:clamp(16px,3vw,28px)}
+.chart-card h3{font-size:var(--step-1);letter-spacing:.02em}
+.chart-wrap{overflow-x:auto;margin-top:12px}
+.chart-wrap svg{display:block;width:100%;min-width:520px;height:auto}
+.chart-wrap .axis{stroke:var(--rule);stroke-width:1}
+.chart-wrap .grid{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 4}
+.chart-wrap text{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.chart-wrap .grp{fill:var(--ink);font-family:var(--body);font-weight:700;font-size:12.5px}
+.chart-wrap .val{fill:var(--ink);font-weight:600}
+.chart-wrap .b-plain{fill:var(--muted)}
+.chart-wrap .b-solo{fill:var(--wax)}
+.chart-wrap .b-forager{fill:var(--steel)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;font-size:.84rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.verdicts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.verdicts div{border-top:2px solid var(--ink);padding-top:12px}
+.verdicts b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:900;text-transform:uppercase;line-height:1.05}
+.verdicts p{font-size:.9rem;color:var(--muted);margin-top:6px;line-height:1.5}
+@media (max-width:760px){.verdicts{grid-template-columns:minmax(0,1fr)}}
+.quote{margin-top:clamp(28px,4vw,44px);border-left:4px solid var(--wax);padding:4px 0 4px 20px;font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.12;max-width:30ch;text-transform:uppercase}
+.quote small{display:block;font-family:var(--mono);font-size:.74rem;font-weight:400;text-transform:none;color:var(--muted);margin-top:10px;letter-spacing:.02em}
+
+.lies{margin-top:clamp(40px,6vw,64px)}
+.table-wrap{overflow-x:auto;margin-top:16px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+td .mono{font-size:.8rem}
+
+.tagkey{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-size:.84rem;color:var(--muted)}
+.tagkey span{display:inline-flex;gap:8px;align-items:center}
+
+/* ---------- realm / projects ---------- */
+.realm-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.card{grid-column:span 4;background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0;position:relative}
+.card.wide{grid-column:span 8}
+.card.half{grid-column:span 6}
+.card .kind{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.card h3{font-size:1.7rem}
+.card p{font-size:.92rem;line-height:1.5}
+.card .stats{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:auto;padding-top:12px;border-top:1px dashed var(--rule);font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.card .stats b{color:var(--ink);font-weight:600}
+.card .stack{display:flex;flex-wrap:wrap;gap:5px}
+.card .stack span{font-family:var(--mono);font-size:.7rem;padding:2px 6px;border-radius:2px;background:var(--sunk);color:var(--muted)}
+.card.hero-card{background:var(--deep);color:var(--deep-fg);border-color:var(--deep-rule)}
+.card.hero-card .label,.card.hero-card .stats{color:var(--deep-dim)}
+.card.hero-card .stats b{color:var(--deep-fg)}
+.card.hero-card .stack span{background:var(--deep-rule);color:var(--deep-fg)}
+.card.hero-card .stats{border-top-color:var(--deep-rule)}
+.card.hero-card .tag.m{color:var(--deep-pass);background:var(--deep-rule)}
+@media (max-width:980px){.card,.card.wide,.card.half{grid-column:span 6}}
+@media (max-width:640px){.card,.card.wide,.card.half{grid-column:span 12}}
+.older{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.older .label{margin-right:6px}
+
+/* ---------- experience ---------- */
+.jobs{display:grid;gap:0;border-top:2px solid var(--ink)}
+.job{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:12px 40px;padding:28px 0;border-bottom:1px solid var(--rule)}
+.job .when{font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:1.6}
+.job .when b{display:block;color:var(--ink);font-family:var(--display);font-size:1.45rem;font-weight:900;text-transform:uppercase;letter-spacing:.01em;line-height:1.05;margin-bottom:6px}
+.job h3{font-size:1.9rem}
+.job .org{font-family:var(--mono);font-size:.8rem;color:var(--wax-strong);margin-top:6px}
+.job ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:9px;max-width:72ch}
+.job li{position:relative;padding-left:20px;font-size:.95rem;line-height:1.55}
+.job li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--wax);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.job li b{font-weight:600}
+.job .aw{display:inline-block;margin-left:4px}
+@media (max-width:760px){.job{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.skill{padding:18px 0;border-top:1px solid var(--rule);min-width:0}
+.skill h3{font-size:1.35rem;letter-spacing:.02em}
+.skill .items{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.skill .items span{font-size:.84rem;padding:4px 9px;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+.skill .items span.lead{border-color:var(--wax);background:var(--wax-soft)}
+.skill .proof{font-size:.82rem;color:var(--muted);margin-top:10px;line-height:1.45}
+.skill .proof b{color:var(--ink);font-weight:600}
+@media (max-width:760px){.skills{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- education ---------- */
+.edu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.edu div{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:18px;min-width:0}
+.edu b{display:block;font-family:var(--display);font-size:1.35rem;font-weight:900;text-transform:uppercase;line-height:1.05}
+.edu .label{display:block;margin:6px 0 10px}
+.edu p,.edu li{font-size:.9rem;line-height:1.5}
+.edu ul{margin:0;padding-left:18px;display:grid;gap:4px}
+@media (max-width:860px){.edu{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- contact ---------- */
+.end{padding-block:clamp(56px,8vw,96px);background:var(--deep);color:var(--deep-fg)}
+.end h2{font-size:var(--step-4);font-weight:900;text-transform:uppercase;line-height:.9}
+.end h2 span{color:var(--deep-wax)}
+.end p{max-width:56ch;margin-top:20px;font-size:var(--step-1);color:var(--deep-fg)}
+.end .contact{font-size:.95rem}
+.end .contact span,.end .contact a{color:var(--deep-fg)}
+.end .contact .k{color:var(--deep-dim)}
+.end .btn{background:var(--deep-wax);border-color:var(--deep-wax);color:var(--deep)}
+.end .btn:hover{background:var(--deep-fg);border-color:var(--deep-fg);color:var(--deep)}
+.end .btn.ghost{background:transparent;color:var(--deep-fg);border-color:var(--deep-dim)}
+.end .btn.ghost:hover{border-color:var(--deep-wax);color:var(--deep-wax)}
+.end .fine{font-family:var(--mono);font-size:.74rem;color:var(--deep-dim);margin-top:44px;max-width:80ch;line-height:1.6}
+.hero{cursor:crosshair}
+.hero a,.hero button{cursor:pointer}
+.hero .figs{cursor:auto}
+.comb-ui{margin-top:26px;max-width:62ch;cursor:auto}
+.comb-hint{font-size:.84rem;color:var(--muted);line-height:1.5}
+.linkish{border:0;background:none;padding:0;font:inherit;color:var(--steel);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.linkish:hover{color:var(--wax-strong)}
+.comb-ledger{margin-top:10px;min-height:calc(4 * 1.7em + 20px);background:var(--deep);color:var(--deep-fg);border:1px solid var(--deep-rule);border-radius:var(--radius);padding:10px 12px;font:.72rem/1.7 var(--mono);overflow-x:auto}
+.comb-ledger div{white-space:nowrap}
+.comb-ledger .t{color:var(--deep-dim)}
+.comb-ledger .c{color:var(--deep-wax)}
+.comb-ledger .sg-claim{color:var(--deep-steel)}
+.comb-ledger .sg-done{color:var(--deep-pass)}
+@media print{.comb-ui{display:none}}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--wax);color:var(--ink);font:600 .85rem var(--body);padding:10px 16px;border-radius:4px;z-index:50}
+
+/* entrance: visible at rest, a gentle lift when motion is allowed */
+@media (prefers-reduced-motion: no-preference){
+  .hero h1,.hero .thesis,.hero .contact,.hero .cta{animation:lift .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero .thesis{animation-delay:.08s}.hero .contact{animation-delay:.14s}.hero .cta{animation-delay:.2s}
+  @keyframes lift{from{transform:translateY(10px)}to{transform:none}}
+}
+
+@media print{
+  .nav,#comb,.cta,.theme-btn,.hero::after{display:none!important}
+  body{background:#fff;color:#000;font-size:10pt}
+  section.block{padding-block:18pt;break-inside:avoid-page}
+  .card,.job,.tier{break-inside:avoid}
+  .ledger{background:#f3f3f3;color:#000}
+  .end{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">K<span>.</span>WILKINS</a>
+    <ul id="navlinks">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#apiary">Apiary</a></li>
+      <li><a href="#evidence">Evidence</a></li>
+      <li><a href="#realm">Portfolio</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme">Theme</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="comb" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="chip clear"><span class="dot"></span>Open to commercial AI roles</span>
+      <span class="chip">San Diego · remote-friendly</span>
+      <span class="chip">Claude Code · MCP</span>
+      <span class="chip">BSEE, SDSU</span>
+      <span class="chip">SAFe 6 Practitioner</span>
+    </div>
+    <h1>Kevin Wilkins<span class="role">Agentic Engineer · Claude Code, MCP &amp; Test Automation</span></h1>
+    <p class="thesis">I build the rails that teams of AI coding agents run on. Then I <strong>measure whether they work</strong>, and I report the answer even when it is no.</p>
+    <div class="contact">
+      <a href="mailto:jameskwilkins@gmail.com"><span class="k">mail</span>jameskwilkins@gmail.com</a>
+      <a href="https://github.com/WyrmSnack" target="_blank" rel="noopener"><span class="k">gh</span>github.com/WyrmSnack</a>
+    </div>
+    <div class="cta">
+      <a class="btn" href="#apiary">See the flagship: Apiary</a>
+      <a class="btn ghost" href="#evidence">Read the measurements</a>
+      <button class="btn ghost" type="button" id="copyMail">Copy email</button>
+    </div>
+    <div class="comb-ui">
+      <p class="comb-hint">Click anywhere on the comb to post a task. The agents follow each other's trails to it, claim it, and close it. <button type="button" id="postTask" class="linkish">Post a task for me</button></p>
+      <div class="comb-ledger" id="combLedger" role="log" aria-live="polite" aria-label="Live ledger of the agents on the comb"></div>
+    </div>
+  </div>
+  <div class="figs">
+    <div class="wrap">
+      <div class="fig"><b class="num">24</b><span>pre-registered benchmark runs, graded by hidden tests</span><span class="tag m">Measured</span></div>
+      <div class="fig"><b class="num">159/159</b><span>conformance tests on the substrate spec I wrote</span><span class="tag m">Measured</span></div>
+      <div class="fig"><b class="num">89</b><span>commits to apiary-sdk, phases 0 to 12, Oct 14–18 2026</span><span class="tag m">Measured</span></div>
+      <div class="fig"><b class="num">255</b><span>agent tasks closed through acceptance gates in one Godot game colony</span><span class="tag r">Colony record</span></div>
+      <div class="fig"><b class="num">36</b><span>chapters in the SASD textbook, 2nd edition</span><span class="tag r">Colony record</span></div>
+      <div class="fig"><b class="num">7</b><span>creative tools driven by agents: Godot, Blender, FFmpeg and more</span><span class="tag m">Measured</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ PROFILE ============ -->
+<section class="block" id="profile">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>01</b>Profile</div>
+      <h2>From the repair bench to agent infrastructure</h2>
+      <p class="lede">Thirteen years of making complicated systems behave: first radar electronics and circuit-board repair, then enterprise automation and test engineering, now coordination and verification for multi-agent AI.</p>
+    </div>
+    <div class="split">
+      <div class="prose">
+        <p>I am a software developer at Booz Allen Hamilton. There I built Model Context Protocol integrations that let an AI drive VS Code, NVIDIA Isaac Sim and Blender; an executive demo in NVIDIA Omniverse; test automation for a real-time messaging system; and Power Platform and Power BI tools that took manual work out of planning and compliance teams.</p>
+        <p>On my own time I built <b>Apiary</b>: a versioned specification, a conformance suite and a reference implementation for <em>stigmergic</em> agent software development. Agents coordinate only through files (an append-only ledger, a decisions file, a task queue) with leases, fencing tokens, acceptance gates and a guard that refuses tampering. I run a realm of more than twenty projects on it, wrote a 36-chapter textbook about the method, and benchmarked it against plain sessions with pre-registered decision rules.</p>
+        <p>I am moving into commercial AI, where that work is the job: AI-first software teams, developer-tools companies, and engineering organisations adopting coding agents.</p>
+      </div>
+      <div>
+        <div class="label" style="margin-bottom:10px">Roles I am built for</div>
+        <div class="targets">
+          <div><b>AI Solutions Engineer / Applied AI Architect</b><span>MCP · agents · customers</span></div>
+          <div><b>Agentic Engineer / Agent Platform</b><span>orchestration · tooling</span></div>
+          <div><b>AI Evaluation &amp; Test Automation Engineer</b><span>benchmarks · gates</span></div>
+          <div><b>AI Enablement for Engineering Teams</b><span>coding agents · adoption</span></div>
+        </div>
+        <div class="bridge">
+          <div><span class="label">Repair lab</span><p>Restore a failed system with thin documentation, under a deadline, and certify it.</p></div>
+          <div><span class="label">Consulting</span><p>Turn ambiguous requirements into tools people adopt, then train them.</p></div>
+          <div><span class="label">Apiary</span><p>Make agents' work auditable and enforceable, and prove what that costs.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APIARY ============ -->
+<section class="block" id="apiary">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>02</b>Flagship</div>
+      <h2>Apiary: a substrate for colonies of coding agents</h2>
+      <p class="lede">Ants coordinate without talking to each other: each one leaves a trace, the next one reads it. Apiary does that for AI agents. Every claim, decision and close is a line in a file you can diff, and nothing closes until its check passes.</p>
+    </div>
+
+    <div class="flag">
+      <div class="prose">
+        <p><b>What I built.</b> A language-neutral spec (<span class="mono">SUBSTRATE_SPEC.md</span>, 541 lines, each requirement with an ID), JSON test vectors for implementers, a conformance suite that talks to any implementation over MCP stdio, and a Python reference implementation: library, MCP server, CLI and a Claude Code guard hook. About 4,300 lines of implementation, 2,800 of unit tests and 1,200 of conformance harness.</p>
+        <p><b>How it is built.</b> Test first, always. Every phase is pre-registered: plan, hypotheses and decision rules are committed before the first run. Five architecture decision records. A <span class="mono">textbook-corrections.md</span> lists where my own textbook was wrong, with evidence. The suite passes the reference and <em>fails the textbook design as written</em>, on purpose.</p>
+        <p><b>What it connects to.</b> <span class="mono">apiary connect add</span> wires a colony to Blender, Godot, Aseprite, FFmpeg, SoX, Tiled and Inkscape, writes each program's known silent failures into its connector, and records a hash of every output it produces.</p>
+        <p class="ledger-note">The working repository is private. A public demo edition is in preparation, and a live walkthrough is available on request.</p>
+      </div>
+      <div>
+        <div class="ledger" role="figure" aria-label="Sample lines from a colony ledger">
+          <div class="hd"><span>PHEROMONE_LEDGER.md · tail</span><span>append-only</span></div>
+<code><span class="t">2026-10-17T05:31Z</span> | <span class="c">Queen</span> | <span class="sg-warn">WARN</span>  | apiary/measure.py | Guard blocked create_plan after Kevin's yes</code>
+<code><span class="t">2026-10-17T05:37Z</span> | <span class="c">Queen</span> | <span class="sg-trace">TRACE</span> | TRACES.md | KEY game-layout</code>
+<code><span class="t">2026-10-17T05:38Z</span> | <span class="c">Queen</span> | <span class="sg-warn">WARN</span>  | tasks/active/002-godot-scaffold.task | asset gate misreads res:// in comments</code>
+<code><span class="t">2026-10-19T18:10Z</span> | <span class="c">Guardian</span> | DEPOSIT | opportunities/sighted/900-…opp | legal 4 honesty 3; 6/6 verified</code>
+<code><span class="t">2026-10-19T18:10Z</span> | <span class="c">Guardian</span> | <span class="sg-warn">WARN</span>  | research/…/polar-fees-903.md | page hides an agent-only instruction</code>
+<code><span class="t">2026-10-19T18:12Z</span> | <span class="c">Queen</span> | DEPOSIT | council/DOCKET.md | sitting 2026-10-19: 13 sighted, 1 vetoed</code>
+        </div>
+        <p class="ledger-note">Real lines from two of my colonies, shortened. The second-to-last is a Guardian agent flagging a web page that carried hidden instructions aimed at AI agents and declining to follow them.</p>
+      </div>
+    </div>
+
+    <div class="tiers" aria-label="Realm architecture">
+      <div class="tier">
+        <div class="who"><b>Realm</b><span>the Forge · Supreme Queen</span></div>
+        <div class="what"><span class="node hot">realm/decrees/*.decree</span><span class="node">ROYAL_LEDGER.md</span><span class="node">projects.yaml registry</span><span class="node hot">Throne Room UI</span><span class="node">realm survey</span></div>
+      </div>
+      <div class="tier-arrow"><span>decrees say what and why</span><span class="up">vassals answer in their own ledgers</span></div>
+      <div class="tier">
+        <div class="who"><b>Vassal</b><span>one Queen per project</span></div>
+        <div class="what"><span class="node">create_plan (lanes, no overlapping writes)</span><span class="node hot">TRACES.md decisions</span><span class="node">plan_status</span><span class="node">human approval guard</span></div>
+      </div>
+      <div class="tier-arrow"><span>tasks with writes, reads and acceptance</span><span class="up">DONE only when the check exits 0</span></div>
+      <div class="tier">
+        <div class="who"><b>Hive</b><span>Forager · Nurse · Guardian</span></div>
+        <div class="what"><span class="node">claim_task → fencing token</span><span class="node">renew_claim (lease)</span><span class="node hot">close_task runs acceptance</span><span class="node">run_connector (Blender, Godot…)</span><span class="node">research → independent verify</span></div>
+      </div>
+    </div>
+
+    <ol class="cycle" aria-label="Task lifecycle">
+      <li><b>resume</b><p>Abandoned tasks go back to pending. Live claims are never touched.</p></li>
+      <li><b>claim_task</b><p>Pins the task by hash and returns a fencing token and a lease.</p></li>
+      <li><b>work in writes</b><p>The guard hook blocks edits to the ledger, tasks, gates and locked tests.</p></li>
+      <li><b>renew_claim</b><p>Lost lease means lost task: the agent stops and says so.</p></li>
+      <li><b>close_task</b><p>Runs the acceptance command. Non-zero exit, no close. Never weaken the test.</p></li>
+    </ol>
+
+    <div class="phases">
+      <div class="label">Build log · each gate checked on my machine, Windows 10 · CI matrix ran through Phase 8</div>
+      <ul class="phase-list">
+        <li><span class="n">0</span><span class="d">Oct 14</span><span class="w"><b>Import the authoring kit, crash/resume model check</b><small>Windows + Linux CI matrix, fenced close, ADR 0001.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">1</span><span class="d">Oct 15</span><span class="w"><b>Spec v0.2.0 with requirement IDs</b><small>Grammars for ledger, task and TRACES; portable acceptance commands (ADR 0002).</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">2</span><span class="d">Oct 15</span><span class="w"><b>Enforcement for Claude Code</b><small>Guard hook refuses direct and shell writes to colony records (ADR 0004).</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">3</span><span class="d">Oct 15</span><span class="w"><b>Fast to adopt</b><small><span class="mono">apiary init</span>, <span class="mono">validate</span>, <span class="mono">task new</span>; .mcp.json wiring.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">4</span><span class="d">Oct 16</span><span class="w"><b>Connect outside software</b><small>Real Blender 4.4.3 driven from Claude Code; output hashes match files on disk.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">5</span><span class="d">Oct 16</span><span class="w"><b>The Queen plans lanes; the Nurse researches</b><small>Unprompted parallel plan with a research lane and an independent Guardian verify. Shipped a public site.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">6</span><span class="d">Oct 16</span><span class="w"><b>The measurement</b><small>Nine runs, three arms, hidden tests. Verdict: no clear saving. Docs rewritten to say so.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">7</span><span class="d">Oct 16</span><span class="w"><b>Cut the colony's overhead</b><small>One-call <span class="mono">create_plan</span> (17 conformance tests, mutations caught), solo Queen: 7.19M → 0.90M median tokens.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">8</span><span class="d">Oct 17</span><span class="w"><b>A bigger project</b><small>Spreadsheet engine, 317 hidden tests, 14 planted bugs all caught by the grader.</small></span><span class="pill pass">Passed</span></li>
+        <li><span class="n">9</span><span class="d">Oct 17</span><span class="w"><b>Cut the Forager's start-up cost</b><small>Purpose-built subagents: first-call context about 14k tokens, down from 55–60k (probe 1).</small></span><span class="pill open">In progress</span></li>
+        <li><span class="n">10</span><span class="d">Oct 17</span><span class="w"><b>Game-development software</b><small>Seven programs, asset gates, GDScript test runner; 18 of 18 mutations caught; real-program demo closed 8 of 8 tasks.</small></span><span class="pill open">4 of 5 gates</span></li>
+        <li><span class="n">12</span><span class="d">Oct 18</span><span class="w"><b>The scaling run</b><small>1, 2, 4 and 8 concurrent colonies. Hypotheses committed before any run.</small></span><span class="pill pre">Pre-registered</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section class="block" id="evidence">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>03</b>Evidence</div>
+      <h2>I tested my own idea, and it lost on cost</h2>
+      <p class="lede">The textbook claimed colonies of agents would be faster and cheaper. I wrote the decision rules down first, ran 24 builds across two projects, and graded each one with hidden tests the agents never saw.</p>
+    </div>
+
+    <div class="chart-card">
+      <h3>Median total tokens per build, by how the work was organised</h3>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 660 300" role="img" aria-label="Bar chart of median tokens. Small game: plain 0.85 million, solo colony 0.90 million, colony with Forager lanes 7.19 million. Spreadsheet engine: plain 3.09 million, solo colony 4.62 million, every task to a Forager 9.34 million.">
+          <!-- scale: x = 190 + v * 42  (0..10M across 420px) -->
+          <line class="grid" x1="190" y1="20" x2="190" y2="262"/>
+          <line class="grid" x1="295" y1="20" x2="295" y2="262"/>
+          <line class="grid" x1="400" y1="20" x2="400" y2="262"/>
+          <line class="grid" x1="505" y1="20" x2="505" y2="262"/>
+          <line class="grid" x1="610" y1="20" x2="610" y2="262"/>
+          <line class="axis" x1="190" y1="262" x2="610" y2="262"/>
+          <text x="190" y="280" text-anchor="middle">0</text>
+          <text x="295" y="280" text-anchor="middle">2.5M</text>
+          <text x="400" y="280" text-anchor="middle">5M</text>
+          <text x="505" y="280" text-anchor="middle">7.5M</text>
+          <text x="610" y="280" text-anchor="middle">10M</text>
+
+          <text class="grp" x="0" y="30">Small game · 38 tests</text>
+          <text x="0" y="56">plain session</text>
+          <rect class="b-plain" x="190" y="44" width="35.7" height="18" rx="2"/>
+          <text class="val" x="232" y="57">0.85M</text>
+          <text x="0" y="82">colony, solo Queen</text>
+          <rect class="b-solo" x="190" y="70" width="37.8" height="18" rx="2"/>
+          <text class="val" x="234" y="83">0.90M · 1.1×</text>
+          <text x="0" y="108">colony, Forager lanes</text>
+          <rect class="b-forager" x="190" y="96" width="302" height="18" rx="2"/>
+          <text class="val" x="498" y="109">7.19M · 7.7×</text>
+
+          <text class="grp" x="0" y="160">Spreadsheet engine · 317 tests</text>
+          <text x="0" y="186">plain session</text>
+          <rect class="b-plain" x="190" y="174" width="129.8" height="18" rx="2"/>
+          <text class="val" x="326" y="187">3.09M</text>
+          <text x="0" y="212">colony, solo Queen</text>
+          <rect class="b-solo" x="190" y="200" width="194" height="18" rx="2"/>
+          <text class="val" x="390" y="213">4.62M · 1.5×</text>
+          <text x="0" y="238">every task to a Forager</text>
+          <rect class="b-forager" x="190" y="226" width="392.3" height="18" rx="2"/>
+          <text class="val" x="588" y="239">9.34M</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--muted)"></i>Plain Claude Code session</span>
+        <span><i style="background:var(--wax)"></i>Colony, Queen works solo</span>
+        <span><i style="background:var(--steel)"></i>Colony with Forager subagents</span>
+        <span class="tag m">Measured</span>
+      </div>
+    </div>
+
+    <div class="verdicts">
+      <div><b>Quality: a tie</b><p>Every arm hit 38/38 on the game. On the engine every run scored 315 to 317 of 317. The pre-registered test (worst colony run beats plain's best) was not met.</p></div>
+      <div><b>Cost: plain wins</b><p>Forager subagents cost 3× to 7.7× the tokens. I redesigned the protocol around the data: solo by default, plan in one call, and the colony fell to 1.1× on the small game.</p></div>
+      <div><b>What it adds: a record</b><p>All 15 colony runs closed every task on the first try through its acceptance check. After I added an approval guard, 6 of 6 runs asked the human before creating tasks, up from 1 of 3.</p></div>
+    </div>
+
+    <p class="quote">Use the colony for the record and the checks, not for a cheaper build.<small>Apiary README, after Phase 8 · two projects, one machine, one model, three runs per arm</small></p>
+
+    <div class="lies">
+      <div class="label">Found by running the real programs · Phase 10 · these became connector rules and tests</div>
+      <h3 style="margin-top:10px">Outside programs lie about success</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Program</th><th>What it does</th><th>What Apiary does now</th></tr></thead>
+          <tbody>
+            <tr><td>Godot 4.7.2</td><td>A <span class="mono">--script</span> runtime error never exits; a runtime error inside a test method lets a naive runner count a pass.</td><td>Timeout plus a <span class="mono">SCRIPT ERROR</span> pattern mark the run <span class="mono">NOT OK</span>; the GDScript runner counts errors through Godot's Logger.</td></tr>
+            <tr><td>Inkscape 1.4.4</td><td>Exits 0 for a missing file. Turns a malformed SVG into a blank 300×150 PNG.</td><td>Error patterns and an SVG asset gate.</td></tr>
+            <tr><td>Blender 4.4.3</td><td>Exits 0 on a crash unless told otherwise.</td><td>Every run passes <span class="mono">--python-exit-code 1</span>.</td></tr>
+            <tr><td>Aseprite 1.3.18</td><td>Exits 0 for a missing input.</td><td>Missing outputs are checked by hash in the run record.</td></tr>
+            <tr><td>SoX 14.4.2</td><td>Writes 32-bit extensible WAV by default, which Godot refuses to import.</td><td>The audio gate fails it (test written first); the skill says <span class="mono">-b 16</span>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tagkey">
+      <span><span class="tag m">Measured</span>a script reran it on my machine</span>
+      <span><span class="tag r">Colony record</span>written by agents into a ledger</span>
+            <span>Portfolio figures carry one of these; numbers under Experience come from my employment record.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REALM / PORTFOLIO ============ -->
+<section class="block" id="realm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>04</b>Portfolio</div>
+      <h2>The realm: a colony of colonies</h2>
+      <p class="lede">Apiary runs everything I build. The Forge of WyrmSnack is the administrative colony over 24 project folders: products, a measurement lab and frozen evidence runs, each with its own Queen.</p>
+    </div>
+
+    <div class="realm-grid">
+      <article class="card wide hero-card">
+        <div class="kind"><span class="label">Realm UI · TypeScript</span><span class="tag m">Measured</span></div>
+        <h3>The Throne Room</h3>
+        <p>One read-only interface over every colony in the realm: a 2D Throne Room, a Hive IDE and a 3D Bridge holo-table in three.js. A local server watches every ledger, task folder and decree and pushes changes over Server-Sent Events, with polling fallback, debounced rescans and edits held while you type. Its only write is a sealed decree.</p>
+        <div class="stack"><span>TypeScript</span><span>three.js</span><span>SSE</span><span>Node</span><span>no framework</span></div>
+        <div class="stats"><span><b>4,400</b> lines</span><span><b>1</b> runtime dependency</span><span>binds <b>127.0.0.1</b> only</span></div>
+      </article>
+      <article class="card">
+        <div class="kind"><span class="label">Book · 2nd edition</span><span class="tag r">Colony record</span></div>
+        <h3>SASD Textbook</h3>
+        <p><em>Stigmergic Agent Software Development</em>. Substrate, castes, task decomposition, long context, skill libraries, QA gates, formal methods. The second edition adds Part VI: what the colony measured, locks and keys, and the realm.</p>
+        <div class="stats"><span><b>36</b> chapters</span><span>source audit</span></div>
+      </article>
+
+      <article class="card">
+        <div class="kind"><span class="label">Game · Godot 4</span><span class="tag r">Colony record</span></div>
+        <h3>Beyond the Ice Wall</h3>
+        <p>A game rebuilt from its design manual by an apiary colony that works test-first: user stories, feature tests, unit tests, then code. Locked tests can only change through a logged unlock with evidence.</p>
+        <div class="stack"><span>GDScript</span><span>TDD</span><span>locked tests</span></div>
+        <div class="stats"><span><b>255</b> tasks closed</span><span><b>165</b> test files</span><span><b>33k</b> lines GDScript</span></div>
+      </article>
+      <article class="card">
+        <div class="kind"><span class="label">Web app · Node</span><span class="tag r">Colony record</span></div>
+        <h3>Kitchen Ticket</h3>
+        <p>A single-file meal planner whose grocery list is correct by construction. Its own design system, style guide and user stories, built by a colony from a written problem statement.</p>
+        <div class="stack"><span>JavaScript</span><span>design tokens</span><span>user stories</span></div>
+        <div class="stats"><span><b>75</b> tasks closed</span></div>
+      </article>
+      <article class="card">
+        <div class="kind"><span class="label">Lab</span><span class="tag r">Colony record</span></div>
+        <h3>Proving Ground</h3>
+        <p>The realm's lab. Candidate colony variants are measured against benchmarks under a pre-registered rule; winners leave as decrees to apiary-sdk.</p>
+        <div class="stack"><span>experiments</span><span>variant overlays</span><span>results schema</span></div>
+      </article>
+
+      <article class="card half">
+        <div class="kind"><span class="label">Practice</span><span class="tag r">Colony record</span></div>
+        <h3>SASD Practice</h3>
+        <p>A consulting offer built on the evidence: a fixed-scope audit of a team's agent setup against fifteen failure modes, with a report where every claim is tagged Measured, Sourced, Colony record, Analysis or Unverified. Sample audit and three price tiers drafted.</p>
+        <div class="stack"><span>audit checklist</span><span>report template</span><span>claim tagging</span></div>
+      </article>
+      <article class="card half">
+        <div class="kind"><span class="label">Agents that find work</span><span class="tag r">Colony record</span></div>
+        <h3>Council of Agents</h3>
+        <p>A colony that searches for paid work it could deliver. Nurses research each opportunity, a Guardian verifies every quote and scores legality and honesty, and I make every outward move. It vetoes channels whose terms forbid AI-assisted work.</p>
+        <div class="stack"><span>research → verify</span><span>veto rules</span><span>human in the loop</span></div>
+      </article>
+
+      <article class="card">
+        <div class="kind"><span class="label">Published · public</span><span class="tag m">Measured</span></div>
+        <h3>reaGUIDE</h3>
+        <p>A website planned by a Queen, researched by a Nurse, verified by a Guardian and built in three parallel lanes. It passed Phase 5's gate: the agents planned in parallel without being told to.</p>
+        <div class="stats"><a href="https://wyrmsnack.github.io/reaGUIDE/" target="_blank" rel="noopener">wyrmsnack.github.io/reaGUIDE</a></div>
+      </article>
+      <article class="card">
+        <div class="kind"><span class="label">Demo · 7 programs</span><span class="tag m">Measured</span></div>
+        <h3>Gamedev Demo</h3>
+        <p>One script builds a small game's assets end to end through Godot, Aseprite, Blender, FFmpeg, SoX, Tiled and Inkscape. Every run record's output hashes match the files; the four planted traps all come out NOT OK.</p>
+        <div class="stats"><span><b>8/8</b> tasks closed</span><span><b>6/6</b> Godot tests headless</span></div>
+      </article>
+      <article class="card">
+        <div class="kind"><span class="label">Earlier work</span><span class="tag r">Colony record</span></div>
+        <h3>Isorythm · MAS-GSE</h3>
+        <p>Where it started: an open, modular multi-agent system for generative software engineering, a living MAS design manual, and Cursor-era colony workshops that the spec later replaced.</p>
+        <div class="stack"><span>Cursor</span><span>multi-agent</span><span>RAG</span></div>
+      </article>
+    </div>
+
+    <div class="older">
+      <span class="label">Also in the realm</span>
+      <span class="node">Veils of Elysia</span><span class="node">TaskManager RPG</span><span class="node">The Never Fair</span><span class="node">DSL Game Workshop</span><span class="node">Homesick Colony</span><span class="node">Research Colony v3</span><span class="node">2 benchmark vassals</span><span class="node">4 evidence colonies</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>05</b>Experience</div>
+      <h2>Where I have done the work</h2>
+    </div>
+    <div class="jobs">
+      <div class="job">
+        <div class="when"><b>Booz Allen Hamilton</b>Sep 2026 – present<br>San Diego, CA</div>
+        <div>
+          <h3>Software Developer</h3>
+          <div class="org">Network-management software</div>
+          <ul>
+            <li>Joined the team maintaining an application that plans, loads, monitors and manages large fleets of software-defined radios.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Booz Allen Hamilton</b>Feb 2026 – Sep 2026<br>San Diego, CA</div>
+        <div>
+          <h3>Test Automation Engineer</h3>
+          <div class="org">Real-time message-processing system</div>
+          <ul>
+            <li>Test automation for the modernization of a real-time message-processing system that bridges several data-link protocols.</li>
+            <li>The engagement ended when the client, a government agency, had its program funding cut.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Booz Allen Hamilton</b>Jan 2025 – Feb 2026<br>San Diego, CA</div>
+        <div>
+          <h3>AI Solutions Engineer</h3>
+          <div class="org">Digital Engineering Automation Center of Excellence</div>
+          <ul>
+            <li>Architected <b>Model Context Protocol integrations</b> that let natural-language agents operate VS Code, NVIDIA Isaac Sim and Blender, so complex engineering tools can be driven and tested by AI.</li>
+            <li>Designed and delivered an executive-facing <b>NVIDIA Omniverse prototype</b> ("Sea Floor to Orbit"), recognised externally at a convention.</li>
+            <li>Advised engineering teams on AI coding assistants, prompt practice and multi-agent systems for client-facing deployments.</li>
+            <li>Built Power BI and DAX dashboards, requirements traceability reporting and Power Platform automation integrated with MS Planner across several workstreams.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Booz Allen Hamilton</b>Feb 2024 – Jan 2025<br>San Diego, CA</div>
+        <div>
+          <h3>Exportability Systems Engineer</h3>
+          <div class="org">Compliance workflow automation</div>
+          <ul>
+            <li>Turned export-compliance requirements into repeatable, auditable digital workflows with subject-matter experts and leadership.</li>
+            <li>Architected a <b>Dataverse-backed Power App</b> for compliance tracking with external data integration, bringing decision-maker updates to near real time; Power Automate pipelines replaced manual entry and nearly eliminated entry errors.</li>
+            <li><b>Awarded</b> for presenting AI document-processing workflows to a federal agency, and <b>formally recognised by client leadership</b> for training excellence.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Booz Allen Hamilton</b>Summers 2022 &amp; 2023<br>San Diego, CA</div>
+        <div>
+          <h3>Engineering Intern</h3>
+          <div class="org">Converted to full time</div>
+          <ul>
+            <li>Built a Python tool using NLP to sort and process tabular data: a weekly task <b>went from 4 hours to 15 minutes</b>. Pitched it to executives and earned the return offer.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>U.S. Navy</b>2013 – 2019<br>San Diego, CA</div>
+        <div>
+          <h3>Electronics Technician</h3>
+          <div class="org">Radar systems supervisor · circuit-board repair lab supervisor</div>
+          <ul>
+            <li>Restored a failed radar/navigation system with limited documentation and six new technicians; it passed certification on the first attempt. Trained 45 technicians.</li>
+            <li>Ran a circuit-board repair lab: component-level repair saved about <b>$500,000</b> in outsourced work in one year. Led a 22-person refurbishment that saved about <b>$2 million</b> in contract work.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Before that</b>2009 – 2013<br>Delaware</div>
+        <div>
+          <h3>Technician &amp; Electrician's Assistant</h3>
+          <div class="org">Tyco SimplexGrinnell · Shureline Electrical · Alliance International</div>
+          <ul>
+            <li>Tested and repaired fire-alarm systems; ran wire and bent conduit through six-storey buildings; diagnosed console hardware with BGA rework stations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="block" id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>06</b>Skills</div>
+      <h2>Each skill, and where it shows</h2>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <h3>Agentic AI &amp; multi-agent systems</h3>
+        <div class="items"><span class="lead">Claude Code</span><span class="lead">Model Context Protocol</span><span>MCP server design</span><span>subagents</span><span>hooks &amp; guardrails</span><span>OpenAI API</span><span>RAG</span><span>prompt &amp; protocol design</span></div>
+        <p class="proof"><b>Proof:</b> Apiary's MCP server and guard hook; MCP integrations for Isaac Sim, Blender and VS Code at Booz Allen.</p>
+      </div>
+      <div class="skill">
+        <h3>Test automation &amp; evaluation</h3>
+        <div class="items"><span class="lead">pytest</span><span class="lead">conformance suites</span><span>test-first (RED, then GREEN)</span><span>mutation testing</span><span>hidden-test grading</span><span>pre-registered benchmarks</span><span>GDScript test runner</span><span>asset gates</span></div>
+        <p class="proof"><b>Proof:</b> 159-test conformance suite; 14 of 14 planted bugs and 18 of 18 mutations caught; 24-run benchmark.</p>
+      </div>
+      <div class="skill">
+        <h3>Languages</h3>
+        <div class="items"><span class="lead">Python</span><span class="lead">TypeScript / JavaScript</span><span>GDScript</span><span>DAX</span><span>C / C++</span><span>Verilog</span><span>MIPS Assembly</span><span>MATLAB / Simulink</span></div>
+        <p class="proof"><b>Proof:</b> apiary-sdk (Python), Throne Room (TypeScript), Beyond the Ice Wall (GDScript), SDSU projects (Verilog, Assembly).</p>
+      </div>
+      <div class="skill">
+        <h3>Tools &amp; integration</h3>
+        <div class="items"><span class="lead">NVIDIA Omniverse</span><span>Isaac Sim</span><span>Godot</span><span>Blender</span><span>FFmpeg</span><span>SoX</span><span>three.js</span><span>Git</span><span>GitHub Actions</span><span>Node</span></div>
+        <p class="proof"><b>Proof:</b> seven programs driven through recorded connectors; Sea Floor to Orbit demo.</p>
+      </div>
+      <div class="skill">
+        <h3>Data, low-code &amp; decision support</h3>
+        <div class="items"><span class="lead">Power BI</span><span>Power Automate</span><span>Power Apps</span><span>Dataverse</span><span>SharePoint</span><span>MS Planner</span><span>requirements traceability</span></div>
+        <p class="proof"><b>Proof:</b> a compliance-tracking Power App; dependency and traceability dashboards.</p>
+      </div>
+      <div class="skill">
+        <h3>Systems, hardware &amp; delivery</h3>
+        <div class="items"><span>radar electronics</span><span>PCB component repair</span><span>control systems</span><span>state-space modeling</span><span>DSP</span><span class="lead">executive demos</span><span class="lead">training</span><span>SAFe 6 (AI-Empowered)</span><span>technical writing</span></div>
+        <p class="proof"><b>Proof:</b> six years running a repair lab; two training awards; a textbook, a spec and five ADRs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="block" id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label"><b>07</b>Education</div>
+      <h2>Education &amp; training</h2>
+    </div>
+    <div class="edu">
+      <div>
+        <b>San Diego State University</b>
+        <span class="label">B.S. Electrical Engineering · Dec 2023</span>
+        <ul>
+          <li>Focus: controls and systems engineering. Top 10% of class.</li>
+          <li>OpenAI-powered syllabus generator in Python.</li>
+          <li>Verilog guitar-solo harmonizer: ADC, NCO and DAC modules under a state machine.</li>
+          <li>MIPS Assembly game with a trading economy and music.</li>
+          <li>DC-motor feedback control in MATLAB/Simulink and Simscape.</li>
+        </ul>
+      </div>
+      <div>
+        <b>AI &amp; software training</b>
+        <span class="label">2024 – 2026</span>
+        <ul>
+          <li><b>Certified AI-Empowered SAFe 6 Practitioner</b>, Scaled Agile (valid through Sep 2027).</li>
+          <li>AI-Enabled SDLC Program, graduated Nov 2025.</li>
+          <li>AI-Driven Software Engineering Program, Digital Ethos Academy (Dec 2025): RAG, multi-agent workflows, LLMs across the SDLC.</li>
+          <li>Python Expert Badge, Booz Allen Hamilton (20 hours, exam).</li>
+          <li>Python for Data Analysis (Nov 2025).</li>
+        </ul>
+      </div>
+      <div>
+        <b>Earlier training</b>
+        <span class="label">2013 – 2021</span>
+        <ul>
+          <li>Electronics technician training: electrical theory, circuit analysis, micro-miniature circuit-board repair.</li>
+          <li>Cuyamaca and Grossmont Colleges: math and science, 3.77 GPA.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="end" id="contact">
+  <div class="wrap">
+    <h2>Let's build<br>the <span>rails</span>.</h2>
+    <p>I am looking for agentic engineering and AI solutions roles at AI-first companies, remote or in San Diego. References on request.</p>
+    <div class="contact">
+      <a href="mailto:jameskwilkins@gmail.com"><span class="k">mail</span>jameskwilkins@gmail.com</a>
+      <a href="https://github.com/WyrmSnack" target="_blank" rel="noopener"><span class="k">gh</span>github.com/WyrmSnack</a>
+    </div>
+    <div class="cta" style="display:flex">
+      <button class="btn" type="button" id="copyMail2">Copy email</button>
+      <a class="btn ghost" href="#top">Back to top</a>
+    </div>
+    <p class="fine">Built with Claude from the realm it describes, the same way the realm itself was built: AI does much of the drafting, I set the direction and check the evidence. Figures tagged Measured come from scripts in apiary-sdk run on my machine (Windows 10); the working repository is private, and a public demo edition is in preparation. Colony records are agent-written ledgers. Nothing here claims savings the measurements did not show.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- theme toggle ---------- */
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  function stored(){try{return localStorage.getItem('kw-theme')}catch(e){return null}}
+  function apply(t){if(t){root.setAttribute('data-theme',t)}else{root.removeAttribute('data-theme')}}
+  apply(stored());
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);
+    var next=dark?'light':'dark'; apply(next); try{localStorage.setItem('kw-theme',next)}catch(e){}
+  });
+
+  /* ---------- copy email ---------- */
+  function toast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove()},1800)}
+  function copy(){
+    var v='jameskwilkins@gmail.com';
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(function(){toast('Email copied')},function(){toast(v)});
+    }else{toast(v)}
+  }
+  ['copyMail','copyMail2'].forEach(function(id){var b=document.getElementById(id);if(b)b.addEventListener('click',copy)});
+
+  /* ---------- nav highlight ---------- */
+  var links=[].slice.call(document.querySelectorAll('#navlinks a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
+    links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)io.observe(s)});
+  }
+
+  /* ---------- the comb: agents leave trails on a hex grid, the trails steer the next agent.
+     A click posts a task on a cell; nearby agents converge, claim it, and close it after enough visits,
+     and each step is written to a small ledger, the way apiary records real work. ---------- */
+  var cv=document.getElementById('comb'); if(!cv||!cv.getContext)return;
+  var hero=document.getElementById('top'), tick=document.getElementById('combLedger'), postBtn=document.getElementById('postTask');
+  var ctx=cv.getContext('2d'), R=13, W3=Math.sqrt(3)*R, cols=0, rows=0, field=null, grid=null, ants=[], dpr=1, colors={};
+  var tasks=[], taskSeq=3, lines=[], NEED=8;
+  var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function readColors(){var cs=getComputedStyle(root);function g(n,d){return cs.getPropertyValue(n).trim()||d}
+    colors.wax=g('--wax','#B86E00');colors.rule=g('--rule','#C5CFD6');colors.ink=g('--ink','#10202C');colors.pass=g('--pass','#1E6B45');colors.steel=g('--steel','#2F5470')}
+  function hexPath(c,x,y,r){c.beginPath();for(var i=0;i<6;i++){var a=Math.PI/180*(60*i-30);var px=x+r*Math.cos(a),py=y+r*Math.sin(a);i?c.lineTo(px,py):c.moveTo(px,py)}c.closePath()}
+  function center(c,r){return [W3*(c+0.5*(r&1))+W3/2, 1.5*R*r+R]}
+  function cellAt(x,y){var r=Math.round((y-R)/(1.5*R));var c=Math.round((x-W3/2)/W3-0.5*(r&1));return [c,r]}
+  function pad(n,w){n=String(n);while(n.length<w)n='0'+n;return n}
+  function stamp(){var d=new Date();return pad(d.getUTCHours(),2)+':'+pad(d.getUTCMinutes(),2)+':'+pad(d.getUTCSeconds(),2)+'Z'}
+  function log(who,sig,path,note){
+    lines.push({t:stamp(),who:who,sig:sig,path:path,note:note}); if(lines.length>4)lines.shift();
+    if(!tick)return; tick.textContent='';
+    lines.forEach(function(l){var row=document.createElement('div');
+      function seg(txt,cls){var s=document.createElement('span');if(cls)s.className=cls;s.textContent=txt;row.appendChild(s)}
+      seg(l.t+' | ','t');seg(l.who,'c');seg(' | ');seg(l.sig,'sg-'+l.sig.toLowerCase());seg(' | '+l.path+(l.note?' | '+l.note:''));tick.appendChild(row)});
+  }
+  function build(){
+    var rect=cv.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2);
+    cv.width=Math.max(1,Math.floor(rect.width*dpr)); cv.height=Math.max(1,Math.floor(rect.height*dpr));
+    cols=Math.ceil(rect.width/W3)+1; rows=Math.ceil(rect.height/(1.5*R))+1;
+    field=new Float32Array(cols*rows); tasks=[];
+    readColors();
+    grid=document.createElement('canvas'); grid.width=cv.width; grid.height=cv.height;
+    var g=grid.getContext('2d'); g.scale(dpr,dpr); g.strokeStyle=colors.rule; g.lineWidth=1; g.globalAlpha=.55;
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var p=center(c,r);hexPath(g,p[0],p[1],R-1.2);g.stroke()}
+    var n=Math.round(Math.min(90,Math.max(24,rect.width*rect.height/9000)));
+    ants=[];for(var i=0;i<n;i++)ants.push({id:i+1,x:rect.width*(0.35+Math.random()*0.65),y:Math.random()*rect.height,h:Math.random()*Math.PI*2,last:0});
+  }
+  function sense(a,off){var d=R*2.2,x=a.x+Math.cos(a.h+off)*d,y=a.y+Math.sin(a.h+off)*d;var q=cellAt(x,y);if(q[0]<0||q[1]<0||q[0]>=cols||q[1]>=rows)return -1;return field[q[1]*cols+q[0]]}
+  function post(x,y){
+    if(tasks.filter(function(t){return t.state!=='done'}).length>=6)return;
+    var q=cellAt(x,y); if(q[0]<0||q[1]<0||q[0]>=cols||q[1]>=rows)return;
+    var p=center(q[0],q[1]); taskSeq++;
+    var t={id:taskSeq,c:q[0],r:q[1],x:p[0],y:p[1],visits:0,state:'pending',doneAt:0,
+      name:pad(taskSeq,3)+'-hex-'+pad(q[0],2)+'-'+pad(q[1],2)+'.task'};
+    tasks.push(t); log('You','DEPOSIT','tasks/pending/'+t.name,'posted');
+    if(still){var w=cv.width/dpr,h=cv.height/dpr;for(var i=0;i<700&&t.state!=='done';i++)step(w,h);draw()}
+  }
+  function step(w,h){
+    var now=performance.now();
+    for(var i=0;i<ants.length;i++){var a=ants[i];
+      var l=sense(a,-.55),f=sense(a,0),r=sense(a,.55);
+      if(f>=l&&f>=r){}else if(l>r){a.h-=.28}else{a.h+=.28}
+      a.h+=(Math.random()-.5)*.5;
+      /* an open task within reach pulls the agent toward it */
+      var best=null,bd=280*280;
+      for(var k=0;k<tasks.length;k++){var t=tasks[k];if(t.state==='done'||a.last===t.id)continue;var dx=t.x-a.x,dy=t.y-a.y,d=dx*dx+dy*dy;if(d<bd){bd=d;best=t}}
+      if(best){var want=Math.atan2(best.y-a.y,best.x-a.x),diff=Math.atan2(Math.sin(want-a.h),Math.cos(want-a.h));a.h+=diff*.14;
+        if(bd<R*R*1.6){a.last=best.id;a.h+=Math.PI*(0.7+Math.random()*0.6);best.visits++;field[best.r*cols+best.c]=1;
+          if(best.visits===1){best.state='claimed';log('Forager-'+pad(a.id,2),'CLAIM','tasks/active/'+best.name,'token '+(1000+Math.floor(Math.random()*9000)))}
+          else if(best.visits>=NEED&&best.state!=='done'){best.state='done';best.doneAt=now;log('Forager-'+pad(a.id,2),'DONE','tasks/done/'+best.name,'acceptance exit 0')}}}
+      a.x+=Math.cos(a.h)*1.3;a.y+=Math.sin(a.h)*1.3;
+      if(a.x<0||a.x>w||a.y<0||a.y>h){a.h+=Math.PI;a.x=Math.max(0,Math.min(w,a.x));a.y=Math.max(0,Math.min(h,a.y))}
+      var q=cellAt(a.x,a.y);if(q[0]>=0&&q[1]>=0&&q[0]<cols&&q[1]<rows){var kk=q[1]*cols+q[0];field[kk]=Math.min(1,field[kk]+(best?.09:.06))}
+    }
+    for(var j=0;j<field.length;j++)field[j]*=.992;
+    tasks=tasks.filter(function(t){return !(t.state==='done'&&now-t.doneAt>2600)});
+  }
+  function draw(){
+    var now=performance.now();
+    ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(grid,0,0);ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle=colors.wax;
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var v=field[r*cols+c];if(v>.03){var p=center(c,r);ctx.globalAlpha=Math.min(.75,v*.8);hexPath(ctx,p[0],p[1],R-2);ctx.fill()}}
+    for(var k=0;k<tasks.length;k++){var t=tasks[k];
+      if(t.state==='done'){var age=(now-t.doneAt)/2600;ctx.globalAlpha=Math.max(0,1-age);ctx.fillStyle=colors.pass;hexPath(ctx,t.x,t.y,R-1);ctx.fill();
+        ctx.strokeStyle=colors.pass;ctx.lineWidth=2;hexPath(ctx,t.x,t.y,R+4+age*26);ctx.stroke()}
+      else{var pulse=.5+.5*Math.sin(now/260+t.id);ctx.globalAlpha=1;ctx.lineWidth=2.4;ctx.strokeStyle=t.state==='claimed'?colors.steel:colors.ink;
+        hexPath(ctx,t.x,t.y,R+1+pulse*2.5);ctx.stroke();
+        ctx.globalAlpha=.9;ctx.fillStyle=t.state==='claimed'?colors.steel:colors.wax;var frac=Math.min(1,t.visits/NEED);hexPath(ctx,t.x,t.y,(R-3)*(.35+.65*frac));ctx.fill()}}
+    ctx.globalAlpha=1;ctx.fillStyle=colors.ink;
+    for(var i=0;i<ants.length;i++){ctx.beginPath();ctx.arc(ants[i].x,ants[i].y,1.8,0,Math.PI*2);ctx.fill()}
+  }
+  var raf=0,visible=true;
+  function loop(){var w=cv.width/dpr,h=cv.height/dpr;step(w,h);draw();raf=requestAnimationFrame(loop)}
+  function start(){build();
+    var w=cv.width/dpr,h=cv.height/dpr;for(var i=0;i<260;i++)step(w,h); /* arrive with trails already laid */
+    draw(); if(!still&&visible){cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+  }
+  start();
+  log('Queen','DEPOSIT','tasks/pending/','click the comb to post a task');
+  /* show the mechanic once without waiting for a click */
+  setTimeout(function(){if(lines.length<2){var w=cv.width/dpr,h=cv.height/dpr;post(w*0.78,h*0.32)}},1600);
+  hero.addEventListener('click',function(e){
+    if(e.target.closest('a,button,input,.figs,.comb-ui'))return;
+    var sel=window.getSelection&&window.getSelection();if(sel&&String(sel).length)return;
+    var rect=cv.getBoundingClientRect();post(e.clientX-rect.left,e.clientY-rect.top);
+  });
+  if(postBtn)postBtn.addEventListener('click',function(){var w=cv.width/dpr,h=cv.height/dpr;post(w*(0.5+Math.random()*0.45),h*(0.12+Math.random()*0.6))});
+  /* rebuild when the canvas really changes size (first layout, rotation, window resize), not on small reflows */
+  var rt,lastW=cv.getBoundingClientRect().width,lastH=cv.getBoundingClientRect().height;
+  function maybeRebuild(){var b=cv.getBoundingClientRect();if(Math.abs(b.width-lastW)>40||Math.abs(b.height-lastH)>80){lastW=b.width;lastH=b.height;start()}}
+  if('ResizeObserver' in window){new ResizeObserver(function(){clearTimeout(rt);rt=setTimeout(maybeRebuild,150)}).observe(cv)}
+  else{addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(maybeRebuild,180)})}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting;cancelAnimationFrame(raf);if(visible&&!still)raf=requestAnimationFrame(loop)}).observe(cv)}
+  function recolor(){readColors();var keep=field;start();if(keep&&keep.length===field.length)field=keep;draw()}
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',recolor);
+  new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

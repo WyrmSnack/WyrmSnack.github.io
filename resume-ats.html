@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kevin Wilkins Resume</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Two Letter pages, one column, standard section names: built to survive applicant-tracking parsers. */
+:root{--ink:#10202C;--muted:#4E606D;--rule:#C5CFD6;--wax:#9A5A00;
+  --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;--body:'Public Sans','Segoe UI',Arial,sans-serif}
+@page{size:Letter;margin:0.5in 0.55in}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:10pt/1.42 var(--body)}
+.page{max-width:7.4in;margin:0 auto;padding:24px 16px}
+@media print{.page{padding:0}}
+header{border-bottom:2px solid var(--ink);padding-bottom:8px}
+h1{font:800 30pt/1 var(--display);letter-spacing:.01em;margin:0;text-transform:uppercase}
+.role{font-weight:700;color:var(--wax);font-size:11pt;margin-top:3px}
+.contact{margin-top:5px;color:var(--muted);font-size:9.2pt}
+h2{font:800 13pt/1 var(--display);text-transform:uppercase;letter-spacing:.04em;margin:14px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--rule)}
+p{margin:0}
+ul{margin:4px 0 0;padding-left:16px}
+li{margin:2px 0}
+.job{margin-top:9px;break-inside:avoid}
+.job-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.job-h b{font-size:10.4pt}
+.job-h span{color:var(--muted);font-size:9.2pt;white-space:nowrap}
+.sub{color:var(--muted);font-style:italic;font-size:9.4pt}
+.skills p{margin:2px 0}
+.skills b{font-weight:600}
+a{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>Kevin Wilkins</h1>
+  <div class="role">Agentic Engineer · Claude Code, MCP &amp; Test Automation</div>
+  <div class="contact">San Diego, CA (open to remote) · <a href="mailto:jameskwilkins@gmail.com">jameskwilkins@gmail.com</a> · <a href="https://github.com/WyrmSnack">github.com/WyrmSnack</a></div>
+</header>
+
+<h2>Summary</h2>
+<p>Agentic engineer who builds, tests and evaluates AI agents and LLM applications in Python and TypeScript. Built Apiary end to end (self-directed, 2026): a specification, a 159-test conformance suite and a Python reference implementation, with an MCP server, CLI and Claude Code guard hook, that lets Claude Code agents coordinate through auditable files, with acceptance tests that must pass before any task closes. Designed its evaluation: 24 pre-registered benchmark runs graded by hidden tests found multi-agent colonies matched single-agent sessions on quality at 1.1× to 7.7× the tokens, and the protocol was redesigned around that result. At Booz Allen Hamilton, built Model Context Protocol (MCP) integrations that let LLM agents operate VS Code, NVIDIA Isaac Sim and Blender through tool calls, test automation for a real-time messaging system, and low-code automation for planning and compliance teams. Electrical engineer by degree; strong in verification, cross-functional client delivery and executive demos.</p>
+
+<h2>Skills</h2>
+<div class="skills">
+  <p><b>AI agents &amp; LLMs:</b> AI agents, agentic workflows, LLM applications, Claude Code, Model Context Protocol (MCP) server design and integration, tool calling, multi-agent orchestration, subagents, context engineering, prompt engineering, hooks and guardrails, RAG, OpenAI API</p>
+  <p><b>LLM evaluation &amp; testing:</b> evals, LLM evaluation and benchmark design, hidden-test grading, pre-registered experiments, test automation, pytest, test-driven development (TDD), conformance testing, mutation testing, acceptance testing, requirements traceability</p>
+  <p><b>Languages:</b> Python, TypeScript, JavaScript (Node.js), GDScript, DAX, C/C++, Verilog, MATLAB/Simulink</p>
+  <p><b>Platforms &amp; tools:</b> Git, GitHub Actions, three.js, NVIDIA Omniverse, Isaac Sim, Godot, Blender, FFmpeg, Power BI, Power Automate, Power Apps, Dataverse, SharePoint</p>
+</div>
+
+<h2>Projects</h2>
+<div class="job">
+  <div class="job-h"><b>Apiary SDK: coordination layer for teams of AI coding agents</b><span>2026 · Python, TypeScript</span></div>
+  <ul>
+    <li>Built end to end: a versioned, language-neutral specification with requirement IDs, a 159-test conformance suite run over MCP stdio, and a Python reference implementation (library, MCP server, CLI, Claude Code guard hook).</li>
+    <li>AI agents coordinate through an append-only ledger, a decisions file and a task queue with leases and fencing tokens; abandoned tasks return to the queue when a lease expires, and a guard hook blocks agents from editing their own records or tests.</li>
+    <li>Designed the evaluation: 24 pre-registered benchmark runs graded by hidden tests (up to 317 per build). Found multi-agent colonies match single sessions on quality but cost 1.1× to 7.7× the tokens; documented the result and redesigned the protocol around it.</li>
+    <li>Connected seven creative tools (Godot, Blender, Aseprite, FFmpeg, SoX, Tiled, Inkscape) to agents with run records and output hashes; found and gated five cases where a tool exits 0 on failure. 18 of 18 mutations caught.</li>
+    <li>Also built on it: a TypeScript/three.js live dashboard for agent observability across 24 agent projects; a test-first Godot game built by agents (255 tasks closed through acceptance gates, 165 test files); a 36-chapter textbook on the method.</li>
+  </ul>
+</div>
+
+<h2>Experience</h2>
+<div class="job">
+  <div class="job-h"><b>Software Developer, Booz Allen Hamilton</b><span>Sep 2026 – Present · San Diego, CA</span></div>
+  <ul>
+    <li>Joined the team maintaining a network-management application that plans, loads, monitors and manages large fleets of software-defined radios.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-h"><b>Test Automation Engineer, Booz Allen Hamilton</b><span>Feb 2026 – Sep 2026 · San Diego, CA</span></div>
+  <ul>
+    <li>Test automation for the modernization of a real-time message-processing system that bridges several data-link protocols; the engagement ended when the client, a government agency, had its program funding cut.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-h"><b>AI Solutions Engineer, Booz Allen Hamilton</b><span>Jan 2025 – Feb 2026 · San Diego, CA</span></div>
+  <div class="sub">Digital Engineering Automation Center of Excellence</div>
+  <ul>
+    <li>Architected Model Context Protocol (MCP) integrations that let LLM agents operate VS Code, NVIDIA Isaac Sim and Blender through natural-language tool calls, enabling AI-assisted control and testing of engineering software.</li>
+    <li>Designed and delivered an executive-facing NVIDIA Omniverse prototype ("Sea Floor to Orbit"); recognized externally at a convention.</li>
+    <li>Advised engineering teams on AI coding assistants, prompt engineering and multi-agent systems for client-facing deployments.</li>
+    <li>Built Power BI/DAX dashboards, requirements traceability reporting and Power Platform automation integrated with MS Planner across several workstreams.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-h"><b>Exportability Systems Engineer, Booz Allen Hamilton</b><span>Feb 2024 – Jan 2025 · San Diego, CA</span></div>
+  <ul>
+    <li>Worked cross-functionally with subject-matter experts and leadership to turn export-compliance requirements into repeatable, auditable digital workflows.</li>
+    <li>Architected a Dataverse-backed Power App for compliance tracking with external data integration, bringing decision-maker updates to near real time; Power Automate pipelines replaced manual data entry and nearly eliminated entry errors.</li>
+    <li>Awarded for presenting AI document-processing workflows to a federal agency; formally recognized by client leadership for training excellence.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-h"><b>Engineering Intern, Booz Allen Hamilton</b><span>Summers 2022 &amp; 2023 · San Diego, CA</span></div>
+  <ul>
+    <li>Built a Python NLP tool for tabular data processing that cut a weekly task from 4 hours to 15 minutes; pitched to executives and converted to full time.</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="job-h"><b>Electronics Technician and Repair Lab Supervisor, U.S. Navy</b><span>2013 – 2019 · San Diego, CA</span></div>
+  <ul>
+    <li>Restored a failed radar/navigation system with limited documentation and six new technicians; passed certification on the first attempt. Trained 45 technicians in operation and troubleshooting.</li>
+    <li>Ran a circuit-board repair lab; component-level repairs saved about $500,000 in outsourced work in one year. Led a 22-person refurbishment that saved about $2 million in contract work.</li>
+  </ul>
+</div>
+
+<h2>Education</h2>
+<p><b>Bachelor of Science (B.S.), Electrical Engineering</b>, San Diego State University, Dec 2023. Controls and systems focus; top 10% of class.</p>
+
+<h2>Certifications &amp; Training</h2>
+<p><b>Certified AI-Empowered SAFe 6 Practitioner</b>, Scaled Agile (valid through Sep 2027)</p>
+<p>AI-Enabled SDLC Program (graduated Nov 2025) · AI-Driven Software Engineering Program, Digital Ethos Academy (Dec 2025) · Python Expert Badge, Booz Allen Hamilton · Python for Data Analysis (Nov 2025)</p>
+</div>
+</body>
+</html>

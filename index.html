@@ -108,14 +108,15 @@ p{margin:0}
 
 /* figures strip */
 .figs{position:relative;z-index:1;border-top:1px solid var(--rule);background:color-mix(in srgb,var(--surface) 90%,transparent)}
-.figs .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding-block:0}
+.figs .wrap{display:grid;grid-template-columns:minmax(0,2fr) repeat(2,minmax(0,1fr));padding-block:0}
+.figs .figs-note{display:block;padding-block:12px 18px;border-top:1px solid var(--rule)}
+.figs-note p{margin:0;max-width:80ch;font-size:.9rem;line-height:1.5;color:var(--ink)}
 .fig{padding:20px 16px 18px;border-left:1px solid var(--rule);min-width:0}
 .fig:first-child{border-left:0;padding-left:0}
 .fig b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(2rem,1.5rem + 1.6vw,2.9rem);line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
 .fig span:not(.tag){display:block;font-size:.84rem;line-height:1.35;color:var(--muted);margin-top:6px}
 .fig .tag{margin-top:9px}
-@media (max-width:980px){.figs .wrap{grid-template-columns:repeat(3,minmax(0,1fr))}.fig:nth-child(4){border-left:0;padding-left:0}.fig:nth-child(n+4){border-top:1px solid var(--rule)}}
-@media (max-width:560px){.figs .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.fig{border-left:0;padding-left:0;border-top:1px solid var(--rule)}.fig:nth-child(odd){padding-right:12px}.fig:nth-child(even){border-left:1px solid var(--rule);padding-left:14px}.fig:nth-child(-n+2){border-top:0}}
+@media (max-width:560px){.figs .wrap{grid-template-columns:minmax(0,1fr)}.fig{border-left:0;padding-left:0;border-top:1px solid var(--rule)}.fig:first-child{border-top:0}}
 
 /* claim tags */
 .tag{display:inline-block;font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 6px;border-radius:2px;vertical-align:.1em;white-space:nowrap}
@@ -371,6 +372,7 @@ td .mono{font-size:.8rem}
     <div class="contact">
       <a href="mailto:jameskwilkins@gmail.com"><span class="k">mail</span>jameskwilkins@gmail.com</a>
       <a href="https://github.com/WyrmSnack" target="_blank" rel="noopener"><span class="k">gh</span>github.com/WyrmSnack</a>
+      <a href="https://www.linkedin.com/in/kevin-wilkins-837527391/" target="_blank" rel="noopener"><span class="k">in</span>LinkedIn</a>
     </div>
     <div class="cta">
       <a class="btn" href="#apiary">See the flagship: Apiary</a>
@@ -384,12 +386,12 @@ td .mono{font-size:.8rem}
   </div>
   <div class="figs">
     <div class="wrap">
-      <div class="fig"><b class="num">24</b><span>pre-registered benchmark runs, graded by hidden tests</span><span class="tag m">Measured</span></div>
+      <div class="fig"><b class="num">24</b><span>pre-registered runs, graded by hidden tests. Result: the agent colony tied single sessions on quality, at 1.1× to 7.7× the tokens.</span><span class="tag m">Measured</span></div>
       <div class="fig"><b class="num">159/159</b><span>conformance tests on the substrate spec I wrote</span><span class="tag m">Measured</span></div>
       <div class="fig"><b class="num">89</b><span>commits to apiary-sdk, phases 0 to 12, Oct 14–18 2026</span><span class="tag m">Measured</span></div>
-      <div class="fig"><b class="num">255</b><span>agent tasks closed through acceptance gates in one Godot game colony</span><span class="tag r">Colony record</span></div>
-      <div class="fig"><b class="num">36</b><span>chapters in the SASD textbook, 2nd edition</span><span class="tag r">Colony record</span></div>
-      <div class="fig"><b class="num">7</b><span>creative tools driven by agents: Godot, Blender, FFmpeg and more</span><span class="tag m">Measured</span></div>
+    </div>
+    <div class="wrap figs-note">
+      <p>Apiary is a self-directed, personal agentic swarm coordination project with no outside users. The colony of agents is resilient, thorough and auditable. More testing is needed to assess how it scales, and that is next.</p>
     </div>
   </div>
 </header>
@@ -407,14 +409,14 @@ td .mono{font-size:.8rem}
     <div class="split">
       <div class="prose">
         <p>I am a software developer at Booz Allen Hamilton. There I built Model Context Protocol integrations that let an AI drive VS Code, NVIDIA Isaac Sim and Blender; an executive demo in NVIDIA Omniverse; test automation for a real-time messaging system; and Power Platform and Power BI tools that took manual work out of planning and compliance teams.</p>
-        <p>On my own time I built <b>Apiary</b>: a versioned specification, a conformance suite and a reference implementation for <em>stigmergic</em> agent software development. Agents coordinate only through files (an append-only ledger, a decisions file, a task queue) with leases, fencing tokens, acceptance gates and a guard that refuses tampering. I run a realm of more than twenty projects on it, wrote a 36-chapter textbook about the method, and benchmarked it against plain sessions with pre-registered decision rules.</p>
+        <p>On my own time I built <b>Apiary</b>, a versioned specification, conformance suite and reference implementation in which AI agents coordinate through shared files instead of messaging each other (the research term is <em>stigmergy</em>). The files are an append-only ledger, a decisions file and a task queue, protected by leases, fencing tokens, acceptance gates and a guard that refuses tampering. I run a realm of more than twenty projects on it, wrote a 36-chapter textbook about the method, and benchmarked it against plain sessions with pre-registered decision rules.</p>
         <p>I am moving into commercial AI, where that work is the job: AI-first software teams, developer-tools companies, and engineering organisations adopting coding agents.</p>
       </div>
       <div>
         <div class="label" style="margin-bottom:10px">Roles I am built for</div>
         <div class="targets">
-          <div><b>AI Solutions Engineer / Applied AI Architect</b><span>MCP · agents · customers</span></div>
-          <div><b>Agentic Engineer / Agent Platform</b><span>orchestration · tooling</span></div>
+          <div><b>Agentic Engineer / Agent Experience</b><span>agent tooling · MCP · evals</span></div>
+          <div><b>AI Solutions Engineer</b><span>agents · integrations · customers</span></div>
           <div><b>AI Evaluation &amp; Test Automation Engineer</b><span>benchmarks · gates</span></div>
           <div><b>AI Enablement for Engineering Teams</b><span>coding agents · adoption</span></div>
         </div>
@@ -692,7 +694,7 @@ td .mono{font-size:.8rem}
           <h3>Software Developer</h3>
           <div class="org">Network-management software</div>
           <ul>
-            <li>Joined the team maintaining an application that plans, loads, monitors and manages large fleets of software-defined radios.</li>
+            <li>Joined the team maintaining a large network-management application.</li>
           </ul>
         </div>
       </div>
@@ -702,7 +704,7 @@ td .mono{font-size:.8rem}
           <h3>Test Automation Engineer</h3>
           <div class="org">Real-time message-processing system</div>
           <ul>
-            <li>Test automation for the modernization of a real-time message-processing system that bridges several data-link protocols.</li>
+            <li>Test automation for the modernization of a real-time message-processing system.</li>
             <li>The engagement ended when the client, a government agency, had its program funding cut.</li>
           </ul>
         </div>
@@ -860,6 +862,7 @@ td .mono{font-size:.8rem}
     <div class="contact">
       <a href="mailto:jameskwilkins@gmail.com"><span class="k">mail</span>jameskwilkins@gmail.com</a>
       <a href="https://github.com/WyrmSnack" target="_blank" rel="noopener"><span class="k">gh</span>github.com/WyrmSnack</a>
+      <a href="https://www.linkedin.com/in/kevin-wilkins-837527391/" target="_blank" rel="noopener"><span class="k">in</span>LinkedIn</a>
     </div>
     <div class="cta" style="display:flex">
       <button class="btn" type="button" id="copyMail2">Copy email</button>

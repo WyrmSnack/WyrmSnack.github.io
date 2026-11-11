@@ -368,7 +368,7 @@ td .mono{font-size:.8rem}
       <span class="chip">SAFe 6 Practitioner</span>
     </div>
     <h1>Kevin Wilkins<span class="role">Agentic Engineer · Claude Code, MCP &amp; Test Automation</span></h1>
-    <p class="thesis">I build the rails that teams of AI coding agents run on. Then I <strong>measure whether they work</strong>, and I report the answer even when it is no.</p>
+    <p class="thesis">I design coordination and verification infrastructure for teams of AI coding agents, and I <strong>evaluate it against pre-registered criteria</strong>, reporting the results whether or not they favour the design.</p>
     <div class="contact">
       <a href="mailto:jameskwilkins@gmail.com"><span class="k">mail</span>jameskwilkins@gmail.com</a>
       <a href="https://github.com/WyrmSnack" target="_blank" rel="noopener"><span class="k">gh</span>github.com/WyrmSnack</a>
@@ -386,12 +386,12 @@ td .mono{font-size:.8rem}
   </div>
   <div class="figs">
     <div class="wrap">
-      <div class="fig"><b class="num">24</b><span>pre-registered runs, graded by hidden tests. Result: the agent colony tied single sessions on quality, at 1.1× to 7.7× the tokens.</span><span class="tag m">Measured</span></div>
+      <div class="fig"><b class="num">24</b><span>pre-registered runs, graded by hidden tests. Result: the agent colony matched single sessions on quality, at 1.1× to 7.7× the tokens.</span><span class="tag m">Measured</span></div>
       <div class="fig"><b class="num">159/159</b><span>conformance tests on the substrate spec I wrote</span><span class="tag m">Measured</span></div>
       <div class="fig"><b class="num">89</b><span>commits to apiary-sdk, phases 0 to 12, Oct 14–18 2026</span><span class="tag m">Measured</span></div>
     </div>
     <div class="wrap figs-note">
-      <p>Apiary is a self-directed, personal agentic swarm coordination project with no outside users. The colony of agents is resilient, thorough and auditable. More testing is needed to assess how it scales, and that is next.</p>
+      <p>Apiary is independent, self-directed work from 2026 and has not been adopted by any outside team. In testing to date, the colony has been resilient, thorough and auditable. Its behaviour at larger scale has not yet been measured; that is the next phase of work.</p>
     </div>
   </div>
 </header>
@@ -403,8 +403,8 @@ td .mono{font-size:.8rem}
   <div class="wrap">
     <div class="sec-head">
       <div class="label"><b>01</b>Profile</div>
-      <h2>From the repair bench to agent infrastructure</h2>
-      <p class="lede">Thirteen years of making complicated systems behave: first radar electronics and circuit-board repair, then enterprise automation and test engineering, now coordination and verification for multi-agent AI.</p>
+      <h2>From electronics repair to agent infrastructure</h2>
+      <p class="lede">Thirteen years of engineering work on complex systems: radar electronics and circuit-board repair, then enterprise automation and test engineering, and now coordination and verification for multi-agent AI.</p>
     </div>
     <div class="split">
       <div class="prose">
@@ -436,7 +436,7 @@ td .mono{font-size:.8rem}
     <div class="sec-head">
       <div class="label"><b>02</b>Flagship</div>
       <h2>Apiary: a substrate for colonies of coding agents</h2>
-      <p class="lede">Ants coordinate without talking to each other: each one leaves a trace, the next one reads it. Apiary does that for AI agents. Every claim, decision and close is a line in a file you can diff, and nothing closes until its check passes.</p>
+      <p class="lede">Apiary applies stigmergy, the indirect coordination seen in ant colonies, to AI agents: each agent records its work in shared files, and the next agent reads them instead of receiving a message. Every claim, decision and task closure is a line in a version-controlled file, and no task closes until its acceptance check passes.</p>
     </div>
 
     <div class="flag">
@@ -510,8 +510,8 @@ td .mono{font-size:.8rem}
   <div class="wrap">
     <div class="sec-head">
       <div class="label"><b>03</b>Evidence</div>
-      <h2>I tested my own idea, and it lost on cost</h2>
-      <p class="lede">The textbook claimed colonies of agents would be faster and cheaper. I wrote the decision rules down first, ran 24 builds across two projects, and graded each one with hidden tests the agents never saw.</p>
+      <h2>Evaluation: the multi-agent design did not reduce cost</h2>
+      <p class="lede">My textbook predicted that colonies of agents would be faster and cheaper than a single session. I committed the decision rules before the first run, ran 24 builds across two projects, and graded each one with hidden tests the agents never saw.</p>
     </div>
 
     <div class="chart-card">
@@ -563,16 +563,16 @@ td .mono{font-size:.8rem}
     </div>
 
     <div class="verdicts">
-      <div><b>Quality: a tie</b><p>Every arm hit 38/38 on the game. On the engine every run scored 315 to 317 of 317. The pre-registered test (worst colony run beats plain's best) was not met.</p></div>
-      <div><b>Cost: plain wins</b><p>Forager subagents cost 3× to 7.7× the tokens. I redesigned the protocol around the data: solo by default, plan in one call, and the colony fell to 1.1× on the small game.</p></div>
-      <div><b>What it adds: a record</b><p>All 15 colony runs closed every task on the first try through its acceptance check. After I added an approval guard, 6 of 6 runs asked the human before creating tasks, up from 1 of 3.</p></div>
+      <div><b>Quality: equivalent</b><p>Every arm hit 38/38 on the game. On the engine every run scored 315 to 317 of 317. The pre-registered test (worst colony run beats plain's best) was not met.</p></div>
+      <div><b>Cost: single sessions were cheaper</b><p>Forager subagents cost 3× to 7.7× the tokens. I redesigned the protocol around the data: solo by default, plan in one call, and the colony fell to 1.1× on the small game.</p></div>
+      <div><b>Value: an auditable record</b><p>All 15 colony runs closed every task on the first try through its acceptance check. After I added an approval guard, 6 of 6 runs asked the human before creating tasks, up from 1 of 3.</p></div>
     </div>
 
     <p class="quote">Use the colony for the record and the checks, not for a cheaper build.<small>Apiary README, after Phase 8 · two projects, one machine, one model, three runs per arm</small></p>
 
     <div class="lies">
       <div class="label">Found by running the real programs · Phase 10 · these became connector rules and tests</div>
-      <h3 style="margin-top:10px">Outside programs lie about success</h3>
+      <h3 style="margin-top:10px">External programs can report false success</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Program</th><th>What it does</th><th>What Apiary does now</th></tr></thead>
@@ -857,7 +857,7 @@ td .mono{font-size:.8rem}
 
 <footer class="end" id="contact">
   <div class="wrap">
-    <h2>Let's build<br>the <span>rails</span>.</h2>
+    <h2>Open to<br><span>agentic engineering</span> roles.</h2>
     <p>I am looking for agentic engineering and AI solutions roles at AI-first companies, remote or in San Diego. References on request.</p>
     <div class="contact">
       <a href="mailto:jameskwilkins@gmail.com"><span class="k">mail</span>jameskwilkins@gmail.com</a>
